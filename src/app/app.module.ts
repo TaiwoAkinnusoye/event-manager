@@ -15,6 +15,9 @@ import { AuthService } from "./user/auth.service";
 // Route Imports
 import { appRoutes } from "./routes";
 
+// Common Imports
+import { CollapsibleWellComponent } from "./common/collapsible-well.component";
+
 // Barrel Imports
 import {
   EventsListResolver,
@@ -24,7 +27,9 @@ import {
   CreateEventComponent,
   EventDetailComponent,
   CreateSessionComponent,
-  EventThumbnailComponent
+  EventThumbnailComponent,
+  SessionListComponent,
+  DurationPipe
 } from "./events/event-barrel";
 
 @NgModule({
@@ -33,10 +38,13 @@ import {
     EventsListComponent,
     EventThumbnailComponent,
     NavBarComponent,
+    CollapsibleWellComponent,
     EventDetailComponent,
     CreateEventComponent,
     CreateSessionComponent,
-    Error404Component
+    Error404Component,
+    SessionListComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
