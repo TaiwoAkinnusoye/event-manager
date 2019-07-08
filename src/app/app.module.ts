@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 // Component Imports
 import { AppComponent } from "./app.component";
@@ -9,28 +10,41 @@ import { NavBarComponent } from "./nav/navbar.component";
 import { Error404Component } from "./errors/404.component";
 
 // Service Imports
-import { ToastrService } from "./common/toastr.service";
 import { AuthService } from "./user/auth.service";
 
 // Route Imports
 import { appRoutes } from "./routes";
 
 // Common Imports
-import { CollapsibleWellComponent } from "./common/collapsible-well.component";
+import {
+  TOASTR_TOKEN,
+  Toastr,
+  CollapsibleWellComponent,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from "./common/common-barrel";
 
-// Barrel Imports
+// Event Imports
 import {
   EventsListResolver,
-  EventRouteActivator,
+  EventResolver,
   EventService,
+  VoterService,
   EventsListComponent,
   CreateEventComponent,
   EventDetailComponent,
   CreateSessionComponent,
   EventThumbnailComponent,
   SessionListComponent,
-  DurationPipe
+  UpVoteComponent,
+  DurationPipe,
+  LocationValidator
 } from "./events/event-barrel";
+
+// Global 3rd Party Objects
+let toastr: Toastr = window["toastr"];
+let jQuery = window["$"];
 
 @NgModule({
   declarations: [
@@ -44,20 +58,33 @@ import {
     CreateSessionComponent,
     Error404Component,
     SessionListComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpVoteComponent,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     EventService,
-    ToastrService,
-    EventRouteActivator,
+    VoterService,
+    EventResolver,
     EventsListResolver,
     AuthService,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
+    },
     { provide: "canDeactivateCreateEvent", useValue: checkDirtyState }
   ],
   bootstrap: [AppComponent]

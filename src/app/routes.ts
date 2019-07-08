@@ -2,13 +2,13 @@ import { Routes } from "@angular/router";
 // Barrel Imports
 import {
   EventsListResolver,
-  EventRouteActivator,
   EventsListComponent,
   CreateEventComponent,
   EventDetailComponent,
   CreateSessionComponent
 } from "./events/event-barrel";
 import { Error404Component } from "./errors/404.component";
+import { EventResolver } from "./events/event-resolver.service";
 
 export const appRoutes: Routes = [
   {
@@ -24,7 +24,7 @@ export const appRoutes: Routes = [
   {
     path: "events/:id",
     component: EventDetailComponent,
-    canActivate: [EventRouteActivator]
+    resolve: {event: EventResolver}
   },
   { path: "events/session/new", component: CreateSessionComponent },
   { path: "404", component: Error404Component },
