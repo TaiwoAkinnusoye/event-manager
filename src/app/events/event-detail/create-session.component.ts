@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Validators, FormControl, FormGroup } from "@angular/forms";
-import { ISession, restrictedWords } from "../shared/event-shared-barrel";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { ISession, restrictedWords } from '../shared/event-shared-barrel';
 
 @Component({
-  selector: "create-session",
-  templateUrl: "./create-session.component.html",
+  selector: 'create-session',
+  templateUrl: './create-session.component.html',
   styles: [
     `
       em {
@@ -39,14 +39,14 @@ export class CreateSessionComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.name = new FormControl("", Validators.required);
-    this.presenter = new FormControl("", Validators.required);
-    this.duration = new FormControl("", Validators.required);
-    this.level = new FormControl("", Validators.required);
-    this.abstract = new FormControl("", [
+    this.name = new FormControl('', Validators.required);
+    this.presenter = new FormControl('', Validators.required);
+    this.duration = new FormControl('', Validators.required);
+    this.level = new FormControl('', Validators.required);
+    this.abstract = new FormControl('', [
       Validators.required,
       Validators.maxLength(400),
-      restrictedWords(["foo", "bar"])
+      restrictedWords(['foo', 'bar'])
     ]);
 
     this.newSessionForm = new FormGroup({
@@ -59,7 +59,7 @@ export class CreateSessionComponent implements OnInit {
   }
 
   saveSession(formValues) {
-    let session: ISession = {
+    const session: ISession = {
       id: undefined,
       name: formValues.name,
       presenter: formValues.presenter,

@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { EventService } from "../shared/event.service";
-import { ActivatedRoute, Params } from "@angular/router";
-import { IEvent, ISession } from "../shared/event-shared-barrel";
+import { Component, OnInit } from '@angular/core';
+import { EventService } from '../shared/event.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { IEvent, ISession } from '../shared/event-shared-barrel';
 
 @Component({
-  selector: "app-event-detail",
-  templateUrl: "./event-detail.component.html",
+  selector: 'app-event-detail',
+  templateUrl: './event-detail.component.html',
   styles: [
     `
       .container {
@@ -23,8 +23,8 @@ import { IEvent, ISession } from "../shared/event-shared-barrel";
 export class EventDetailComponent implements OnInit {
   event: IEvent;
   addMode: boolean;
-  filterBy: string = "all";
-  sortBy: string = "votes";
+  filterBy = 'all';
+  sortBy = 'votes';
 
   constructor(
     private eventService: EventService,
@@ -33,7 +33,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.forEach(data => {
-      this.event = data["event"];
+      this.event = data.event;
       this.addMode = false;
     });
   }

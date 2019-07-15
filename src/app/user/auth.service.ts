@@ -10,9 +10,9 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   loginUser(userName: string, password: string) {
-    let loginInfo = {
+    const loginInfo = {
       username: userName,
-      password: password
+      password
     };
     const options = {
       headers: new HttpHeaders({
@@ -23,7 +23,7 @@ export class AuthService {
       .post("/api/login", loginInfo, options)
       .pipe(
         tap(data => {
-          this.currentUser = <IUser>data["user"];
+          this.currentUser = data as IUser;
         })
       )
       .pipe(
@@ -41,7 +41,7 @@ export class AuthService {
     this.http.get("/api/currentIdentity").pipe(
       tap(data => {
         if (data instanceof Object) {
-          this.currentUser = <IUser>data;
+          this.currentUser = data as IUser;
         }
       })
     );

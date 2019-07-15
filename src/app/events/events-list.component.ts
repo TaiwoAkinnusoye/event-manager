@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { EventService } from "./shared/event.service";
-import { IEvent } from "./shared/event-shared-barrel";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EventService } from './shared/event.service';
+import { IEvent } from './shared/event-shared-barrel';
 
 declare let toastr;
 
@@ -27,6 +27,6 @@ export class EventsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.events = this.route.snapshot.data["events"];
+    this.events = this.route.snapshot.data.events;
   }
 }

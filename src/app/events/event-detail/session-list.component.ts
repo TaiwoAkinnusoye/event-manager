@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges } from "@angular/core";
-import { ISession } from "../event-barrel";
-import { AuthService } from "src/app/user/auth.service";
-import { VoterService } from "./voter.service";
+import { Component, Input, OnChanges } from '@angular/core';
+import { ISession } from '../event-barrel';
+import { AuthService } from 'src/app/user/auth.service';
+import { VoterService } from './voter.service';
 
 @Component({
-  selector: "session-list",
-  templateUrl: "./session-list.component.html"
+  selector: 'session-list',
+  templateUrl: './session-list.component.html'
 })
 export class SessionListComponent implements OnChanges {
   @Input() sessions: ISession[];
@@ -19,7 +19,7 @@ export class SessionListComponent implements OnChanges {
   ngOnChanges() {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
-      this.sortBy === "name"
+      this.sortBy === 'name'
         ? this.visibleSessions.sort(sortByNameAsc)
         : this.visibleSessions.sort(sortByVotesDesc);
     }
@@ -39,7 +39,7 @@ export class SessionListComponent implements OnChanges {
         this.auth.currentUser.userName
       );
     }
-    if (this.sortBy === "votes") {
+    if (this.sortBy === 'votes') {
       this.visibleSessions.sort(sortByVotesDesc);
     }
   }
@@ -52,7 +52,7 @@ export class SessionListComponent implements OnChanges {
   }
 
   filterSessions(filter) {
-    if (filter === "all") {
+    if (filter === 'all') {
       this.visibleSessions = this.sessions.slice(0);
     } else {
       this.visibleSessions = this.sessions.filter(session => {

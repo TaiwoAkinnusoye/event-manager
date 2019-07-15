@@ -1,8 +1,8 @@
-import { Component, Input } from "@angular/core";
-import { IEvent } from "./shared/event-shared-barrel";
+import { Component, Input } from '@angular/core';
+import { IEvent } from './shared/event-shared-barrel';
 
 @Component({
-  selector: "event-thumbnail",
+  selector: 'event-thumbnail',
   template: `
     <div class="well hoverwell thumbnail" [routerLink]="['/events', event.id]">
       <h2>{{ event?.name | uppercase }}</h2>
@@ -48,8 +48,8 @@ export class EventThumbnailComponent {
   @Input() event: IEvent;
 
   getStartTimeClass() {
-    if (this.event && this.event.time === "8:00 am") {
-      return ["green", "bold"];
+    if (this.event && this.event.time === '8:00 am') {
+      return ['green', 'bold'];
       return [];
     }
   }

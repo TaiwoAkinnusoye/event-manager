@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ISession } from "../shared/event.model";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ISession } from '../shared/event.model';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class VoterService {
@@ -15,7 +15,7 @@ export class VoterService {
     }/voters/${voterName}`;
     this.http
       .delete(url)
-      .pipe(catchError(this.handleError<ISession>("addVoter")))
+      .pipe(catchError(this.handleError<ISession>('addVoter')))
       .subscribe();
   }
 
@@ -25,11 +25,11 @@ export class VoterService {
       session.id
     }/voters/${voterName}`;
     const options = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     this.http
       .post(url, {}, options)
-      .pipe(catchError(this.handleError<ISession>("addVoter")))
+      .pipe(catchError(this.handleError<ISession>('addVoter')))
       .subscribe();
   }
 
@@ -37,9 +37,9 @@ export class VoterService {
     return session.voters.some(voter => voter === voterName);
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error("error: ", error);
+      console.error('error: ', error);
       return of(result as T);
     };
   }
